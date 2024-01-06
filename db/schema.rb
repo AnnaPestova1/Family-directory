@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_06_200937) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_06_221254) do
   create_table "family_members", force: :cascade do |t|
     t.string "first_name"
     t.string "relationship"
@@ -27,5 +27,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_06_200937) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.text "description"
+    t.integer "quantity", default: 1
+    t.string "link"
+    t.boolean "purchased", default: false
+    t.integer "family_member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_member_id"], name: "index_wishlists_on_family_member_id"
+  end
+
   add_foreign_key "family_members", "users"
+  add_foreign_key "wishlists", "family_members"
 end

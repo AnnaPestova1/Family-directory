@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :wishlists
   root "users#index"
   resources :users
   resources :family_members
