@@ -1,5 +1,5 @@
 class Contact < ApplicationRecord
-  belongs_to :family_member
+  has_and_belongs_to_many :family_members
   validates :name, presence: true, format: { with: /\A[\p{L}\-' ]+\z/ }
   validates :phone, presence: true
   validates :phone, numericality: { only_integer: true }
