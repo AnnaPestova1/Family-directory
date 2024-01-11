@@ -1,4 +1,4 @@
-<%= form_with(model: wishlist) do |form| %>
+<%= form_with(model: wishlist, remote: true) do |form| %>
   <% if wishlist.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h2>

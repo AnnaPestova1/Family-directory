@@ -2,13 +2,36 @@
 
 <h1>Contacts</h1>
 
-<div id="contacts">
-  <% @contacts.each do |contact| %>
-    <%= render contact %>
-    <p>
-      <%= link_to "Show this contact", contact %>
-    </p>
-  <% end %>
-</div>
+<table id="contacts" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Family member</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact| %>
+    <tr>
+      <td><%= contact.name %></td>
 
-<%= link_to "New contact", new_contact_path %>
+      <td><%= contact.phone %></td>
+
+      <td><%= contact.email %></td>
+
+      <td><%= contact.description %></td>
+
+      <td><%= contact.category %></td>
+
+      <td><%= contact.family_members.pluck(:relationship).join(', ') %></td>
+      <td><%= link_to "Shows", contact, class: "btn btn-secondary" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<%= link_to "New contact", new_contact_path, class: "btn btn-primary" %>

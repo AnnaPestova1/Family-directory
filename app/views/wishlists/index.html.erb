@@ -1,14 +1,84 @@
-<p style="color: green"><%= notice %></p>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Find all checkboxes with the class "wishlist-checkbox"
+  let checkboxes = document.querySelectorAll('.wishlist-checkbox');
+
+  checkboxes.forEach(function(checkbox) {
+    // Add a click event listener to each checkbox
+    checkbox.addEventListener('click', async function() {
+      // Get the corresponding wishlist ID from the data-wishlist-id attribute
+      let wishlistId = checkbox.dataset.wishlistId;
+      const url = `/wishlists/${wishlistId}.json` // Use .json format to respond with JSON
+      try {
+        const res = await fetch(url, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content // Include CSRF token
+          },
+          body: JSON.stringify({ wishlist: { purchased: checkbox.checked } })
+        })
+        if(!res) {
+           throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+         window.location.reload();
+        // return data
+      } catch (e) {
+        console.error(e)
+      }
+    });
+  });
+});
+
+</script>
 
 <h1>Wishlists</h1>
 
-<div id="wishlists">
-  <% @wishlists.each do |wishlist| %>
-    <%= render wishlist %>
-    <p>
-      <%= link_to "Show this wishlist", wishlist %>
-    </p>
-  <% end %>
-</div>
+<table id="contacts" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Link</th>
+      <th>Purchased</th>
+      <th>Family member</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @wishlists.each do |wishlist| %> 
+   
+    <tr <% if wishlist.purchased %> class="table-secondary" <% end %>>
+      <td><%= link_to wishlist.description, wishlist, class: "btn" %><% wishlist.description %></td>
 
-<%= link_to "New wishlist", new_wishlist_path %>
+      <td><%= wishlist.quantity %></td>
+
+      <td>
+        <% if wishlist.link.present? %>
+         <a href="<%= wishlist.link %>">link</a>
+        <% else %>
+         <p></p>
+        <% end %>
+      </td>
+
+      <td>
+        <input
+          class="form-check-input wishlist-checkbox"
+          type="checkbox"
+          id="checkboxBought"
+          value=""
+          aria-label="bought"
+          data-wishlist-id="<%= wishlist.id %>"
+           <%if wishlist.purchased %> checked <% end %>
+        />
+      </td>
+
+      <td><%= wishlist.family_member_id %></td>
+      <td><%= link_to "Show", wishlist, class: "btn btn-secondary" %></td>
+    </tr>
+   
+  </tbody>
+  <% end %>
+</table>
+
+<%= link_to "New wishlist", new_wishlist_path, class: "btn btn-primary" %>

@@ -26,7 +26,7 @@
 
   <p>
     <strong>Family member:</strong>
-    <%= contact.family_member_id %>
+    <%= contact.family_members.pluck(:relationship).join(', ') %>
   </p>
 
 </div>

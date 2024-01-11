@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_08_002057) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_08_014534) do
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "phone"
     t.string "email"
     t.text "description"
     t.string "category"
-    t.integer "family_member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["family_member_id"], name: "index_contacts_on_family_member_id"
   end
 
   create_table "contacts_family_members", id: false, force: :cascade do |t|
@@ -57,7 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_002057) do
     t.index ["family_member_id"], name: "index_wishlists_on_family_member_id"
   end
 
-  add_foreign_key "contacts", "family_members"
   add_foreign_key "family_members", "users"
   add_foreign_key "wishlists", "family_members"
 end

@@ -25,7 +25,7 @@ class WishlistsController < ApplicationController
 
     respond_to do |format|
       if @wishlist.save
-        format.html { redirect_to wishlist_url(@wishlist), notice: "Wishlist was successfully created." }
+        format.html { redirect_to wishlists_url, notice: "Wishlist was successfully created." }
         format.json { render :show, status: :created, location: @wishlist }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class WishlistsController < ApplicationController
   def update
     respond_to do |format|
       if @wishlist.update(wishlist_params)
-        format.html { redirect_to wishlist_url(@wishlist), notice: "Wishlist was successfully updated." }
+        format.html { redirect_to wishlists_url, notice: "Wishlist was successfully updated." }
         format.json { render :show, status: :ok, location: @wishlist }
       else
         format.html { render :edit, status: :unprocessable_entity }
