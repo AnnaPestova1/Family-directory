@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users,
+             controllers: {
+               registrations: "users/registrations",
+               sessions: "users/sessions"
+             }
+  devise_scope :user do
+    get "/users/sign_out" => "devise/sessions#destroy"
+  end
   resources :contacts
   resources :wishlists
-  root "users#index"
-  resources :users
+  root "family_members#index"
+  # resources :users
   resources :family_members
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

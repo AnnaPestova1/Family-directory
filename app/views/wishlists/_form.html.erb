@@ -11,31 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, style: "display: block",class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
+    <%= form.label :quantity, style: "display: block", class: "form-label" %>
+    <%= form.number_field :quantity, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :link, style: "display: block" %>
-    <%= form.text_field :link %>
+    <%= form.label :link, style: "display: block", class: "form-label" %>
+    <%= form.text_field :link, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :purchased, style: "display: block" %>
-    <%= form.check_box :purchased %>
+    <%= form.label :purchased, style: "display: block", class: "form-check-label" %>
+    <%= form.check_box :purchased, class: "form-check-input" %>
   </div>
 
   <div>
-    <%= form.label :family_member_id, style: "display: block" %>
-    <%= form.text_field :family_member_id %>
+    <%= form.label :family_member_id, style: "display: block", class: "form-label" %>
+    <%= form.text_field :family_member_id, class: "form-control" %>
   </div>
-
+  <br/> 
   <div>
     <%= form.submit %>
   </div>

@@ -1,9 +1,11 @@
 class FamilyMembersController < ApplicationController
   before_action :set_family_member, only: %i[ show edit update destroy ]
+   before_action :authenticate_user!
 
   # GET /family_members or /family_members.json
   def index
-    @family_members = FamilyMember.all
+    @family_members = FamilyMember.where(user_id: current_user.id)
+    # @family_members = FamilyMember.all
   end
 
   # GET /family_members/1 or /family_members/1.json
@@ -22,6 +24,7 @@ class FamilyMembersController < ApplicationController
   # POST /family_members or /family_members.json
   def create
     @family_member = FamilyMember.new(family_member_params)
+    @family_member.user = current_user
 
     respond_to do |format|
       if @family_member.save
