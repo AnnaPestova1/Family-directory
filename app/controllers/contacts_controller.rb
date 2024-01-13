@@ -1,9 +1,11 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts
+    # @contacts = Contact.all
   end
 
   # GET /contacts/1 or /contacts/1.json
