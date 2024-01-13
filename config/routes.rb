@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :wishlists
   root "family_members#index"
   # resources :users
-  resources :family_members
+ 
+   resources :family_members do
+    resources :wishlists
+    resources :contacts
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
