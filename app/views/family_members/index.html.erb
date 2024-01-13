@@ -1,16 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Family members</h1>
 
 <div id="family_members" >
   <% @family_members.each do |family_member| %>
-    <!-- <%= render family_member %> -->
     <div class="card" style="width: 18rem;">
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
+   <% if family_member.image.attached? %>
+        <%= image_tag(family_member.image, style:"width:100%", class: "card-img-top" ).html_safe %>
+      <% end %>
   <div class="card-body">
     <h5 class="card-title"> <%= family_member.first_name %></h5>
-    <p class="card-text"><%= family_member.relationship %>   <%= family_member.user_id %></p>
-    <%= link_to "Show this family member", family_member, class: "btn btn-secondary" %>
+    <p class="card-text"><%= family_member.relationship %></p>
+    <%= link_to "Show", family_member, class: "btn btn-secondary" %>
   </div>
 </div>
   <% end %>

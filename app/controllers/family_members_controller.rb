@@ -23,8 +23,8 @@ class FamilyMembersController < ApplicationController
 
   # POST /family_members or /family_members.json
   def create
-    @family_member = FamilyMember.new(family_member_params)
-    @family_member.user = current_user
+    # @family_member = FamilyMember.new(family_member_params)
+    @family_member = current_user.family_members.build(family_member_params)
 
     respond_to do |format|
       if @family_member.save
@@ -68,6 +68,6 @@ class FamilyMembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def family_member_params
-      params.require(:family_member).permit(:first_name, :relationship, :user_id)
+      params.require(:family_member).permit(:first_name, :relationship, :user_id, :image)
     end
 end
