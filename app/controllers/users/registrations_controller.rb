@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  after_action :create_family_member_and_wishlist, only: [:create]
+  after_action :create_family_members, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -63,10 +63,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   
   
-    def create_family_member_and_wishlist
+    def create_family_members
     return unless resource.persisted?
 
     family_member = resource.family_members.create(first_name: resource.first_name, relationship: 'Account Owner')
-    family_member.wishlists.create(description: "#{resource.last_name}'s Wishlist") if family_member.persisted?
+    family_member = resource.family_members.create(first_name: resource.last_name, relationship: 'Family')
   end
 end

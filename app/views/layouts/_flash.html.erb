@@ -1,13 +1,25 @@
 <br />
 <%flash.each do |message_type, message|%>
-<div class="alert alert-success alert-dismissible fade show" id="autoCloseAlert">
- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div
+  class="alert alert-success alert-dismissible fade show"
+  id="autoCloseAlert"
+>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
   <%= content_tag(:div, message) %>
 </div>
-<%end%>
 <script>
   // Automatically close the alert after 3 seconds
+
+  if(document.getElementById('autoCloseAlert')) {
   setTimeout(function() {
     document.getElementById('autoCloseAlert').style.display = 'none';
-  }, 3000);
+  }, 3000)
+  }
 </script>
+<%end%>
+

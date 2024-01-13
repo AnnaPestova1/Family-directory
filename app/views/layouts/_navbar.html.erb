@@ -19,9 +19,33 @@
       <li class="nav-item">
       <%= link_to "Contacts", contacts_path, class: "btn navbar-link"  %>
       </li>
-       <li class="nav-item">
-      <%= link_to "Wishlist", wishlists_path, class: "btn navbar-link"  %>
+       <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Wishlists
+          </a>
+        <ul class="dropdown-menu">
+           <% current_user.family_members.each do |family_member| %>
+              <li><%= link_to "#{family_member.first_name}'s wishlist",  family_member_wishlists_path(family_member), class: "btn dropdown-item" %></li>
+            <% end %>
+            <li><hr class="dropdown-divider"></li>
+            <%= link_to "wishlists", wishlists_path, class: "btn dropdown-item"  %>
+          </ul>
       </li>
+        <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Contacts
+          </a>
+        <ul class="dropdown-menu">
+          <% current_user.family_members.each do |family_member| %>
+            <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "btn dropdown-item" %></li>
+          <% end %>
+              <li><hr class="dropdown-divider"></li>
+            <%= link_to "contacts", contacts_path, class: "btn dropdown-item"  %>
+          </ul>
+      </li>
+       <!-- <li class="nav-item">
+      <%= link_to "Wishlist", wishlists_path, class: "btn navbar-link"  %>
+      </li> -->
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
              <%=current_user.first_name%> <%=current_user.last_name%>
