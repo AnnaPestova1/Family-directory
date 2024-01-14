@@ -28,7 +28,7 @@ class FamilyMembersController < ApplicationController
 
     respond_to do |format|
       if @family_member.save
-        format.html { redirect_to family_member_url(@family_member), notice: "Family member was successfully created." }
+        format.html { redirect_to family_members_url, notice: "Family member was successfully created." }
         format.json { render :show, status: :created, location: @family_member }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class FamilyMembersController < ApplicationController
   def update
     respond_to do |format|
       if @family_member.update(family_member_params)
-        format.html { redirect_to family_member_url(@family_member), notice: "Family member was successfully updated." }
+        format.html { redirect_to family_members_url, notice: "Family member was successfully updated." }
         format.json { render :show, status: :ok, location: @family_member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class FamilyMembersController < ApplicationController
     @family_member.destroy!
 
     respond_to do |format|
-      format.html { redirect_to family_members, notice: "Family member was successfully destroyed." }
+      format.html { redirect_to family_members_url, notice: "Family member was successfully destroyed." }
       format.json { head :no_content }
     end
   end

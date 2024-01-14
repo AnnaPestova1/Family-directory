@@ -4,7 +4,7 @@
 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
   <%= link_to "Edit", edit_family_member_path(@family_member), class: "btn btn-primary me-md-2" %> 
   <%= link_to "Family members", family_members_path, class: "btn btn-primary me-md-2" %>
-  <% unless family_member.relationship == "Account Owner" || family_member.relationship == "Family" %>
+  <% unless @family_member.relationship == "Account Owner" || @family_member.relationship == "Family" %>
     <%= button_to "Delete", @family_member, method: :delete, class: "btn btn-primary" %>
   <%end%>
 </div>

@@ -20,11 +20,13 @@
     <%= form.label :image, style: "display: block; font-weight: bold" %>
     <%= form.file_field :image, style: "width: 90%"  %>
   </div>
-
-  <div>
-    <%= form.label :relationship, style: "display: block; font-weight: bold" %>
-    <%= form.text_field :relationship, style: "width: 90%"  %>
-  </div>
+  <% unless @family_member.relationship == "Account Owner" || @family_member.relationship == "Family" %>
+    <div>
+      <%= form.label :relationship, style: "display: block; font-weight: bold" %>
+      <%= form.text_field :relationship, style: "width: 90%"  %>
+    </div>
+  <%end%>
+  
   <br/>
   <div>
     <%= form.submit class: "btn btn-primary" %>

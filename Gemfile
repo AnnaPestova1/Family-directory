@@ -29,6 +29,10 @@ gem "jbuilder"
 # bootstrap gem for styling
 gem "bootstrap", "~> 5.3", ">= 5.3.2"
 
+gem "bootstrap-icons", "~> 1.0", ">= 1.0.14"
+
+gem "bootstrap-icons-helper", "~> 2.0", ">= 2.0.2"
+
 gem "dartsass-sprockets" # Bootstrap 5 Sass port with Dart Sass
 
 gem "jquery-rails" # jQuery adapter for Rails asset pipeline
