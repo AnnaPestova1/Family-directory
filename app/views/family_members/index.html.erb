@@ -1,32 +1,68 @@
-<% if @family_members.size == 2 %>
-<!-- Render content for the owner family member  -->
-<% owner_family_member = @family_members.find { |fm| fm.relationship == 'Account
-Owner' } %>
-<div id="family_members">
-  <div class="card" style="width: 18rem">
-    <% if family_member.image.attached? %> <%= image_tag(family_member.image,
-    style:"width:100%", class: "card-img-top" ).html_safe %> <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= owner_family_member.first_name %></h5>
-      <p class="card-text"><%= family_member.relationship %></p>
-      <%= link_to "Show", family_member, class: "btn btn-secondary" %>
-    </div>
-  </div>
-</div>
-<%else%>
 <h1>Family members</h1>
-<div id="family_members">
-  <% @family_members.each do |family_member| %>
-  <div class="card" style="width: 18rem">
-    <% if family_member.image.attached? %> <%= image_tag(family_member.image,
-    style:"width:100%", class: "card-img-top" ).html_safe %> <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= family_member.first_name %></h5>
-      <p class="card-text"><%= family_member.relationship %></p>
-      <%= link_to "Show", family_member, class: "btn btn-secondary" %>
+<div class="container text-center" id="family_members">
+  <div class="row">
+  <% if @family_members.size == 2 %>
+  <!-- Render content for the owner family member  -->
+    <% owner_family_member = @family_members.find { |fm| fm.relationship == 'Account Owner' } %>
+    <% if owner_family_member %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div>
+      <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             ...
+          </a>
+        <ul class="dropdown-menu">
+              <li><%= link_to "Edit", edit_family_member_path(owner_family_member), class: "link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover"  %> </li>
+          </ul>
+      </div>
+      </div>
+        </div>
+        <% if owner_family_member.image.attached? %> 
+          <%= image_tag(owner_family_member.image, style:"width:100%", class: "card-img-top" ).html_safe %> 
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= owner_family_member.first_name %></h5>
+          <p class="card-text"><%= owner_family_member.relationship %></p>
+        </div>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <p>No family member with relationship 'Account Owner' found.</p>
   <% end %>
+  <%else%>
+
+    <% @family_members.each do |family_member| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <div class="card mb-5">
+          <div class="card-header">
+          <div>
+      <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             ...
+          </a>
+        <ul class="dropdown-menu">
+              <li><%= link_to "Edit", edit_family_member_path(family_member), class: "link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover"  %> </li>
+                 <% unless family_member.relationship == "Account Owner" || family_member.relationship == "Family" %>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to "Delete", family_member, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover" %></li>
+                  <% end %>
+          </ul>
+      </div>
+      </div>
+          <% if family_member.image.attached? %> 
+            <%= image_tag(family_member.image, style:"width:100%", class: "card-img-top" ).html_safe %> 
+          <% else %>
+            <%= image_tag("/default.jpg", style:"width:100%", class: "card-img-top" ).html_safe %> 
+          <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= family_member.first_name %></h5>
+              <p class="card-text"><%= family_member.relationship %></p>
+              <%= link_to "Show", family_member, class: "btn btn-secondary" %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  <% end %> 
+  </div>
 </div>
-<%end%> <%= link_to "New family member", new_family_member_path, class: "btn
-btn-primary" %>
+<%= link_to "New family member", new_family_member_path, class: "btn btn-primary" %>

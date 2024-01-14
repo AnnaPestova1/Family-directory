@@ -4,7 +4,7 @@ class FamilyMembersController < ApplicationController
 
   # GET /family_members or /family_members.json
   def index
-    @family_members = FamilyMember.where(user_id: current_user.id)
+    @family_members = current_user.family_members
     # @family_members = FamilyMember.all
   end
 
@@ -55,7 +55,7 @@ class FamilyMembersController < ApplicationController
     @family_member.destroy!
 
     respond_to do |format|
-      format.html { redirect_to family_members_url, notice: "Family member was successfully destroyed." }
+      format.html { redirect_to family_members, notice: "Family member was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,7 +63,7 @@ class FamilyMembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family_member
-      @family_member = FamilyMember.find(params[:id])
+      @family_member = current_user.family_members.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
