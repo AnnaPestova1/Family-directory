@@ -13,6 +13,25 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap");
+
+body {
+  font-family: 'Montserrat', 'Helvetica', sans-serif;
+  font-weight:bold;
+  font-weight:normal;
+  background-image: url("pexels-pixabay-315791.jpg");
+  background-size: cover;
+  
+}
+
+main{
+  background: linear-gradient(to right, rgba(239, 238, 238, 0.85), rgba(255, 255, 255, 0.85));
+
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-weight:bold;
+}
 
 a {
   color: black;

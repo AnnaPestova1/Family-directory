@@ -23,10 +23,15 @@
       </nav>
     </header>
     <main>
-    <div class="container-fluid">
+    <div class="container-fluid" id="container">
     <%= render 'layouts/flash' %>
     <%= yield %>
     </div>
     </main>
+    <footer>
+      <div class="container-fluid fixed-bottom d-flex justify-content-center" style="background-color: #b7d5ea; height: 50px; align-items: center;">
+       <%= render 'layouts/footer' %>
+      </div>
+    </footer>
   </body>
 </html>
