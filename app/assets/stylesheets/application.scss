@@ -14,12 +14,31 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
-
 a {
-  color: black; 
+  color: black;
 }
 
 a:link {
-  background-color: transparent; 
   text-decoration: none;
+}
+
+.pagy-nav.pagination {
+  & .prev,
+  & .next {
+    a,
+    &.disabled {
+      @extend .btn;
+    }
+  }
+  & .page {
+    &.active {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+    a {
+      @extend .btn;
+    }
+  }
+  @extend .d-flex;
+  @extend .gap-2;
 }

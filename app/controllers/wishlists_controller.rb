@@ -1,4 +1,5 @@
 class WishlistsController < ApplicationController
+  include Pagy::Backend
   before_action :set_wishlist, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
@@ -7,10 +8,10 @@ class WishlistsController < ApplicationController
     if params[:family_member_id]
       @family_member = FamilyMember.find(params[:family_member_id])
       @q = @family_member.wishlists.ransack(params[:q])
-      @wishlists= @q.result(distinct: true)
+      @pagy, @wishlists= pagy(@q.result(distinct: true), items: 5)
     else
       @q = current_user.wishlists.ransack(params[:q])
-      @wishlists =  @q.result(distinct: true)
+      @pagy, @wishlists =  pagy(@q.result(distinct: true), items: 5)
     end
   end
 
@@ -37,7 +38,7 @@ class WishlistsController < ApplicationController
           redirect_to wishlists_url,
                       notice: "Wishlist was successfully created."
         end
-        format.json { render :show, status: :created, location: @wishlist }
+        format.json { render :index, status: :created, location: @wishlist }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json do
@@ -52,10 +53,10 @@ class WishlistsController < ApplicationController
     respond_to do |format|
       if @wishlist.update(wishlist_params)
         format.html do
-          redirect_to wishlists_url,
-                      notice: "Wishlist was successfully updated."
+          redirect_back(fallback_location: wishlists_url,
+                        notice: "Wishlist item was successfully updated.")
         end
-        format.json { render :index, status: :ok, location: @wishlist }
+        format.json { render :index, status: :ok, location: wishlists_url }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json do

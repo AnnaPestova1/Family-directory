@@ -66,4 +66,9 @@
     <% end %>
   </table>
 </div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 
+  </ul>
+</nav>

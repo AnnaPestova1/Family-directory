@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  include Pagy::Backend
   before_action :set_contact, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
@@ -7,13 +8,13 @@ def index
   if params[:family_member_id]
     @family_member = FamilyMember.find(params[:family_member_id])
     @q = @family_member.contacts.includes(:family_members).ransack(params[:q])
-    @contacts = @q.result(distinct: true)
+    @pagy, @contacts = pagy(@q.result(distinct: true), items: 5)
   else
     @q = current_user.contacts.includes(:family_members)
                                     .select(:id, :name, :phone, :email, :description, :category)
                                     .distinct
                                     .ransack(params[:q])
-    @contacts = @q.result(distinct: true).order(:name)
+    @pagy, @contacts = pagy(@q.result(distinct: true), items: 5)
 
   end
 end
@@ -47,8 +48,8 @@ def create
 
   respond_to do |format|
     if @contact.save
-      format.html { redirect_to contact_url(@contact), notice: "Contact was successfully created." }
-      format.json { render :show, status: :created, location: @contact }
+      format.html { redirect_to contacts_url, notice: "Contact was successfully created." }
+      format.json { render :index, status: :created, location: @contact }
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -60,7 +61,7 @@ end
     respond_to do |format|
       if @contact.update(contact_params)
         format.html do
-          redirect_to contact_url(@contact),
+          redirect_to contacts_url,
                       notice: "Contact was successfully updated."
         end
         format.json { render :index, status: :ok, location: @contact }
