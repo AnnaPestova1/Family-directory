@@ -78,3 +78,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "email_validator", "~> 2.2"
+
+gem "strong_password", "~> 0.0.10"

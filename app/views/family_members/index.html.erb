@@ -1,14 +1,14 @@
 <div class="container text-center" id="family_members">
-    <h1>Family members</h1>
+    <h1 class="mb-5">Family members</h1>
   <div class="row justify-content-center ">
       <% @family_members.each do |family_member| %>
         <% unless @family_members.size == 2 and family_member.relationship == "Family" %>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-              <div class="card mt-5" >
+              <div class="card mb-5" style="min-height: 415px;">
                 <% if family_member.image.attached? %> 
-                  <%= image_tag(family_member.image, style:"width:100%", class: "card-img-top" ).html_safe %> 
+                  <%= image_tag(family_member.image, height: "300",  alt: "userpic", style:"width:100%", class: "card-img-top" ).html_safe %> 
                 <% else %>
-                  <%= image_tag("/default.jpg", style:"width:100%", class: "card-img-top" ).html_safe %> 
+                  <%= image_tag("/default.jpg", height: "300", alt: "userpic", style:"width:100%", class: "card-img-top" ).html_safe %> 
                 <% end %>
                   <div class="card-body">
                     <h5 class="card-title"><%= family_member.first_name %></h5>
@@ -34,8 +34,8 @@
         <% end %>
       <% end %>
       <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex ">
-        <div class="card mt-5 mb-5 flex-grow-1 d-flex justify-content-center">
-         <%= link_to "", new_family_member_path, class: "btn flex-grow-1 d-flex justify-content-center  align-items-center bi bi-plus-circle-dotted fs-1", style: "min-height: 300px;" %>
+        <div class="card mb-5 flex-grow-1 d-flex justify-content-center" style="min-height: 415px;">
+         <%= link_to "", new_family_member_path, class: "btn flex-grow-1 d-flex justify-content-center  align-items-center bi bi-plus-circle-dotted fs-1" %>
         </div>
       </div>
   </div>
