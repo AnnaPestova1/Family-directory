@@ -4,7 +4,13 @@ class WishlistsController < ApplicationController
 
   # GET /wishlists or /wishlists.json
   def index
-    @wishlists = current_user.wishlists
+    if params[:family_member_id]
+      @family_member = FamilyMember.find(params[:family_member_id])
+      @wishlists = @family_member.wishlists
+    else
+      @wishlists = current_user.wishlists
+    end
+
     # @wishlists = Wishlist.all
   end
 
@@ -76,7 +82,7 @@ class WishlistsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_wishlist
-    @wishlist = Wishlist.find(params[:id])
+    @wishlist = current_user.wishlists.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

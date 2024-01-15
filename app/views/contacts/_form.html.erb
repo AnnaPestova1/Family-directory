@@ -10,40 +10,38 @@
       </ul>
     </div>
   <% end %>
+  <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
+    <div>
+      <%= form.label :name, style: "display: block; font-weight: bold" %>
+      <%= form.text_field :name, style: "width: 90%" %>
+    </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+    <div>
+      <%= form.label :phone,  style: "display: block; font-weight: bold" %>
+      <%= form.text_field :phone, style: "width: 90%" %>
+    </div>
 
-  <div>
-    <%= form.label :phone, style: "display: block" %>
-    <%= form.text_field :phone %>
-  </div>
+    <div>
+      <%= form.label :email, style: "display: block; font-weight: bold" %>
+      <%= form.text_field :email, style: "width: 90%" %>
+    </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
+    <div>
+      <%= form.label :description, style: "display: block", style: "display: block; font-weight: bold" %>
+      <%= form.text_area :description, style: "width: 90%" %>
+    </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
+    <div>
+      <%= form.label :category,style: "display: block; font-weight: bold" %>
+      <%= form.text_field :category, style: "width: 90%" %>
+    </div>
 
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
-  </div>
-
-<div>
-  <%= form.label :family_member_ids, style: "display: block" %>
-  <%= form.collection_select(:family_member_ids, FamilyMember.all, :id, :relationship, { multiple: true, include_blank: true }) %>
-</div>
-  
-
-
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
+      <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+    </div>
+    <div>
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

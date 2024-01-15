@@ -3,10 +3,17 @@ class ContactsController < ApplicationController
   before_action :authenticate_user!
 
   # GET /contacts or /contacts.json
-  def index
-    @contacts = current_user.contacts
-    # @contacts = Contact.all
+def index
+  if params[:family_member_id]
+    @family_member = FamilyMember.find(params[:family_member_id])
+    @contacts = @family_member.contacts.includes(:family_members)
+  else
+    @contacts = current_user.contacts.includes(:family_members)
+                                    .select(:id, :name, :phone, :email, :description, :category)
+                                    .distinct
+                                    .order(:name)
   end
+end
 
   # GET /contacts/1 or /contacts/1.json
   def show
@@ -79,7 +86,7 @@ end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_contact
-    @contact = Contact.find(params[:id])
+    @contact = current_user.contacts.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
