@@ -14,3 +14,12 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+
+a {
+  color: black; 
+}
+
+a:link {
+  background-color: transparent; 
+  text-decoration: none;
+}

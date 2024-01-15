@@ -3,8 +3,8 @@
 <%= render @wishlist %>
 
 <div>
-  <%= link_to "Edit this wishlist", edit_wishlist_path(@wishlist) %> |
-  <%= link_to "Back to wishlists", wishlists_path %>
+  <%= link_to "Edit this wishlist", edit_wishlist_path(@wishlist), class: "btn btn-primary mt-3" %> |
+  <%= link_to "Back to wishlists", wishlists_path, class: "btn btn-primary mt-3" %>
 
-  <%= button_to "Destroy this wishlist", @wishlist, method: :delete %>
+  <%= button_to "Destroy this wishlist", @wishlist, method: :delete, class: "btn btn-primary mt-3" %>
 </div>

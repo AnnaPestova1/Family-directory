@@ -3,15 +3,15 @@ class WishlistsController < ApplicationController
   before_action :authenticate_user!
 
   # GET /wishlists or /wishlists.json
-  def index
+   def index
     if params[:family_member_id]
       @family_member = FamilyMember.find(params[:family_member_id])
-      @wishlists = @family_member.wishlists
+      @q = @family_member.wishlists.ransack(params[:q])
+      @wishlists= @q.result(distinct: true)
     else
-      @wishlists = current_user.wishlists
+      @q = current_user.wishlists.ransack(params[:q])
+      @wishlists =  @q.result(distinct: true)
     end
-
-    # @wishlists = Wishlist.all
   end
 
   # GET /wishlists/1 or /wishlists/1.json
@@ -55,7 +55,7 @@ class WishlistsController < ApplicationController
           redirect_to wishlists_url,
                       notice: "Wishlist was successfully updated."
         end
-        format.json { render :show, status: :ok, location: @wishlist }
+        format.json { render :index, status: :ok, location: @wishlist }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json do

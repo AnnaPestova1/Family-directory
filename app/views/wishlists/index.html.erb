@@ -1,17 +1,24 @@
-<center>
-  <div class="d-flex">
-    <h1 class="flex-grow-1">Wishlists</h1> 
-    <%= link_to "", new_wishlist_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %>   
+<div class="d-flex justify-content-center">
+  <div class="flex-grow-1">
+    <%= search_form_for @q do |f| %>
+      <% f.label :description_or_link_cont %>
+      <%= f.search_field :description_or_link_cont %>
+      <%= f.submit %>
+    <% end %>
   </div>
-</center>
+  <%= link_to "", new_wishlist_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %>   
+</div>
+<div class="d-flex justify-content-center">
+  <h1 class="mb-3">Wishlists</h1> 
+</div>
 <div class="table-responsive">
   <table id="wishlist" class="table table-bordered table-responsive-md w-80">
     <thead>
       <tr>
-        <th>Description</th>
-        <th>Quantity</th>
+        <th class: "link-secondary"><%= sort_link(@q, :description, 'Description', default_order: :asc) %></th>
+        <th class: "link-secondary"><%= sort_link(@q, :quantity, 'Quantity', default_order: :asc) %></th>
         <th>Link</th>
-        <th>Purchased</th>
+        <th class: "link-secondary"><%= sort_link(@q, :purchased, 'Purchased', default_order: :asc) %></th>
         <th>Family member</th>
         <th></th>
       </tr>

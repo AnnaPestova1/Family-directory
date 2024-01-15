@@ -6,12 +6,15 @@ class ContactsController < ApplicationController
 def index
   if params[:family_member_id]
     @family_member = FamilyMember.find(params[:family_member_id])
-    @contacts = @family_member.contacts.includes(:family_members)
+    @q = @family_member.contacts.includes(:family_members).ransack(params[:q])
+    @contacts = @q.result(distinct: true)
   else
-    @contacts = current_user.contacts.includes(:family_members)
+    @q = current_user.contacts.includes(:family_members)
                                     .select(:id, :name, :phone, :email, :description, :category)
                                     .distinct
-                                    .order(:name)
+                                    .ransack(params[:q])
+    @contacts = @q.result(distinct: true).order(:name)
+
   end
 end
 
@@ -60,7 +63,7 @@ end
           redirect_to contact_url(@contact),
                       notice: "Contact was successfully updated."
         end
-        format.json { render :show, status: :ok, location: @contact }
+        format.json { render :index, status: :ok, location: @contact }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json do

@@ -6,6 +6,13 @@ class Contact < ApplicationRecord
   validates :phone, length: { is: 10 }
   validates :email, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z]{2,}\z/i, allow_blank: true }
   validates :category, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["category", "created_at", "description", "email", "id", "id_value", "name", "phone", "updated_at"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["family_members"]
+  end
 end
 
 # regex /\A[\p{L}\-' ]+\z/ check if name contains only letters, hyphens, apostrophes and spaces

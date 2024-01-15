@@ -1,18 +1,25 @@
-<center>
-  <div class="d-flex">
-    <h1 class="flex-grow-1">Contacts</h1> 
-    <%= link_to "", new_contact_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %> 
+<div class="d-flex justify-content-center">
+  <div class="flex-grow-1">
+    <%= search_form_for @q do |f| %>
+      <% f.label :name_or_phone_or_email_or_category_cont %>
+      <%= f.search_field :name_or_phone_or_email_or_category_cont %>
+      <%= f.submit %>
+    <% end %>
   </div>
-</center>
+  <%= link_to "", new_contact_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %> 
+</div>
+<div class="d-flex justify-content-center">
+  <h1 class="mb-3">Contacts</h1> 
+</div>
 <div class="table-responsive">
   <table id="contacts" class="table table-bordered table-responsive-md 80">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
+        <th class: "link-secondary"><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+        <th class: "link-secondary"><%= sort_link(@q, :phone, 'Phone', default_order: :asc) %></th>
+        <th class: "link-secondary"><%= sort_link(@q, :email, 'Email', default_order: :asc) %></th>
         <th>Description</th>
-        <th>Category</th>
+        <th class: "link-secondary"><%= sort_link(@q, :category, 'Category', default_order: :asc) %></th>
         <th>Family member</th>
         <% if params[:family_member_id].present? %>
           <th></th>

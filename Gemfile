@@ -82,3 +82,7 @@ end
 gem "email_validator", "~> 2.2"
 
 gem "strong_password", "~> 0.0.10"
+
+gem "ransack", "~> 4.1"
+
+gem "pagy", "~> 6.4"
