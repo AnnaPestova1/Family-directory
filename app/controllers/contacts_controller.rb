@@ -8,13 +8,13 @@ def index
   if params[:family_member_id]
     @family_member = FamilyMember.find(params[:family_member_id])
     @q = @family_member.contacts.includes(:family_members).ransack(params[:q])
-    @pagy, @contacts = pagy(@q.result(distinct: true), items: 5)
+    @pagy, @contacts = pagy(@q.result(distinct: true))
   else
     @q = current_user.contacts.includes(:family_members)
                                     .select(:id, :name, :phone, :email, :description, :category)
                                     .distinct
                                     .ransack(params[:q])
-    @pagy, @contacts = pagy(@q.result(distinct: true), items: 5)
+    @pagy, @contacts = pagy(@q.result(distinct: true))
 
   end
 end

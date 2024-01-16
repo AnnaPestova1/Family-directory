@@ -1,5 +1,9 @@
 <div class="container-fluid">
-   <%= link_to "Family Directory", root_path, class: "navbar-brand" %>
+      <%= link_to root_path do %>
+      <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 250px", class: "navbar-brand" ).html_safe %>
+      <% end %>
+  </div>
+   
   <button
     class="navbar-toggler"
     type="button"

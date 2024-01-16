@@ -27,7 +27,7 @@
       <% @wishlists.each do |wishlist| %> 
     
       <tr <% if wishlist.purchased %> class="table-secondary" <% end %>>
-        <td><%= link_to wishlist.description, wishlist, class: "btn" %></td>
+        <td><%= wishlist.description %></td>
 
         <td><%= wishlist.quantity %></td>
 

@@ -8,10 +8,10 @@ class WishlistsController < ApplicationController
     if params[:family_member_id]
       @family_member = FamilyMember.find(params[:family_member_id])
       @q = @family_member.wishlists.ransack(params[:q])
-      @pagy, @wishlists= pagy(@q.result(distinct: true), items: 5)
+      @pagy, @wishlists= pagy(@q.result(distinct: true))
     else
       @q = current_user.wishlists.ransack(params[:q])
-      @pagy, @wishlists =  pagy(@q.result(distinct: true), items: 5)
+      @pagy, @wishlists =  pagy(@q.result(distinct: true))
     end
   end
 
