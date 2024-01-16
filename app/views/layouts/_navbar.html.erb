@@ -1,8 +1,7 @@
-<div class="container-fluid">
-      <%= link_to root_path do %>
-      <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 250px", class: "navbar-brand" ).html_safe %>
-      <% end %>
-  </div>
+<div class="container">
+  <%= link_to root_path do %>
+    <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 250px", class: "navbar-brand" ).html_safe %>
+  <% end %>
    
   <button
     class="navbar-toggler"
@@ -15,8 +14,9 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav  d-flex justify-content-end w-100">  
+
+  <div class="collapse navbar-collapse w-250" id="navbarSupportedContent">
+    <ul class="navbar-nav d-flex justify-content-end w-100">  
       <% if user_signed_in? %>
         <li class="nav-item dropdown-center">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,13 +53,12 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn navbar-link"  %>
+          <%= link_to "Login", new_user_session_path, class: " navbar-link btn w-150"  %>
         </li>
         <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "btn navbar-link"  %>
+          <%= link_to "Sign up", new_user_registration_path, class: "navbar-link btn w-150"  %>
         </li> 
       <% end%>
     </ul>
   </div>
 </div>
-

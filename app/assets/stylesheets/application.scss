@@ -16,22 +16,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap");
 
 body {
-  font-family: 'Montserrat', 'Helvetica', sans-serif;
-  font-weight:bold;
-  font-weight:normal;
+  font-family: "Montserrat", "Helvetica", sans-serif;
+  font-weight: bold;
+  font-weight: normal;
   background-image: url("pexels-pixabay-315791.jpg");
   background-size: cover;
-  
+  background-position: 50% 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-main{
-  background: linear-gradient(to right, rgba(239, 238, 238, 0.85), rgba(255, 255, 255, 0.85));
-  min-height: calc(100vh - 135px);
-
+main {
+  background: linear-gradient(
+    to right,
+    rgba(239, 238, 238, 0.85),
+    rgba(255, 255, 255, 0.85)
+  );
+  // min-height: calc(100vh - 135px);
+  flex-grow: 1;
+  overflow: auto;
 }
 
-h1, h2, h3, h4, h5, h6{
-  font-weight:bold;
+.navbar-nav .nav-item {
+  min-width: fit-content;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
 }
 
 a {
