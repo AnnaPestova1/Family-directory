@@ -29,11 +29,15 @@ gem "jbuilder"
 # bootstrap gem for styling
 gem "bootstrap", "~> 5.3", ">= 5.3.2"
 
+gem "bootstrap-icons", "~> 1.0", ">= 1.0.14"
+
+gem "bootstrap-icons-helper", "~> 2.0", ">= 2.0.2"
+
 gem "dartsass-sprockets" # Bootstrap 5 Sass port with Dart Sass
 
 gem "jquery-rails" # jQuery adapter for Rails asset pipeline
 
-gem 'popper_js', '~> 2.11', '>= 2.11.8'
+gem "popper_js", "~> 2.11", ">= 2.11.8"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -51,8 +55,8 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-
+gem "image_processing", "~> 1.2"
+gem "devise"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
@@ -74,3 +78,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "email_validator", "~> 2.2"
+
+gem "strong_password", "~> 0.0.10"
+
+gem "ransack", "~> 4.1"
+
+gem "pagy", "~> 6.4"

@@ -1,37 +1,76 @@
-<p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-center">
+  <div class="flex-grow-1">
+    <%= search_form_for @q do |f| %>
+      <% f.label :name_or_phone_or_email_or_category_cont %>
+      <%= f.search_field :name_or_phone_or_email_or_category_cont %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <%= link_to "", new_contact_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %> 
+</div>
+<div class="d-flex justify-content-center">
+  <h1 class="mb-3">Contacts</h1> 
+</div>
+<div class="table-responsive">
+  <table id="contacts" class="table table-bordered table-responsive-md w-80">
+    <thead>
+      <tr>
+        <th class: "link-secondary"><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+        <th class: "link-secondary"><%= sort_link(@q, :phone, 'Phone', default_order: :asc) %></th>
+        <th class: "link-secondary"><%= sort_link(@q, :email, 'Email', default_order: :asc) %></th>
+        <th>Description</th>
+        <th class: "link-secondary"><%= sort_link(@q, :category, 'Category', default_order: :asc) %></th>
+        <th>Family member</th>
+        <% if params[:family_member_id].present? %>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
 
-<h1>Contacts</h1>
+        <td><%= contact.phone %></td>
 
-<table id="contacts" class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Family member</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @contacts.each do |contact| %>
-    <tr>
-      <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
 
-      <td><%= contact.phone %></td>
+        <td><%= contact.description %></td>
 
-      <td><%= contact.email %></td>
+        <td><%= contact.category %></td>
 
-      <td><%= contact.description %></td>
+        <td>
+          <% if params[:family_member_id].present? %>
+            <%= contact.family_members.pluck(:first_name).join(', ') %>
+          <% else %>
+            <% contact.family_members.each do |fm| %>
+              <%= fm.first_name %>
+            <% end %>
+          <% end %>
+        </td>
+          <% if params[:family_member_id].present? %>
+        <td>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <%= link_to "", edit_contact_path(contact), class: "link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover dropdown-item bi bi-pencil"  %>
+              </div>
+              <div class="col">
+                <%= link_to "", contact, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "link-secondary link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover dropdown-item bi bi-trash" %>
+              </div>
+            </div>
+          </div>
+        </td>
+        <% end %>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 
-      <td><%= contact.category %></td>
+  </ul>
+</nav>
 
-      <td><%= contact.family_members.pluck(:relationship).join(', ') %></td>
-      <td><%= link_to "Shows", contact, class: "btn btn-secondary" %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-
-<%= link_to "New contact", new_contact_path, class: "btn btn-primary" %>

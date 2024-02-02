@@ -1,9 +1,11 @@
 class FamilyMembersController < ApplicationController
   before_action :set_family_member, only: %i[ show edit update destroy ]
+   before_action :authenticate_user!
 
   # GET /family_members or /family_members.json
   def index
-    @family_members = FamilyMember.all
+    @family_members = current_user.family_members
+    # @family_members = FamilyMember.all
   end
 
   # GET /family_members/1 or /family_members/1.json
@@ -21,11 +23,12 @@ class FamilyMembersController < ApplicationController
 
   # POST /family_members or /family_members.json
   def create
-    @family_member = FamilyMember.new(family_member_params)
+    # @family_member = FamilyMember.new(family_member_params)
+    @family_member = current_user.family_members.build(family_member_params)
 
     respond_to do |format|
       if @family_member.save
-        format.html { redirect_to family_member_url(@family_member), notice: "Family member was successfully created." }
+        format.html { redirect_to family_members_url, notice: "Family member was successfully created." }
         format.json { render :show, status: :created, location: @family_member }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,7 @@ class FamilyMembersController < ApplicationController
   def update
     respond_to do |format|
       if @family_member.update(family_member_params)
-        format.html { redirect_to family_member_url(@family_member), notice: "Family member was successfully updated." }
+        format.html { redirect_to family_members_url, notice: "Family member was successfully updated." }
         format.json { render :show, status: :ok, location: @family_member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,11 +63,11 @@ class FamilyMembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family_member
-      @family_member = FamilyMember.find(params[:id])
+      @family_member = current_user.family_members.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def family_member_params
-      params.require(:family_member).permit(:first_name, :relationship, :user_id)
+      params.require(:family_member).permit(:first_name, :relationship, :user_id, :image)
     end
 end

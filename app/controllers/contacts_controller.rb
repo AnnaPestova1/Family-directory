@@ -1,10 +1,23 @@
 class ContactsController < ApplicationController
+  include Pagy::Backend
   before_action :set_contact, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /contacts or /contacts.json
-  def index
-    @contacts = Contact.all
+def index
+  if params[:family_member_id]
+    @family_member = FamilyMember.find(params[:family_member_id])
+    @q = @family_member.contacts.includes(:family_members).ransack(params[:q])
+    @pagy, @contacts = pagy(@q.result(distinct: true))
+  else
+    @q = current_user.contacts.includes(:family_members)
+                                    .select(:id, :name, :phone, :email, :description, :category)
+                                    .distinct
+                                    .ransack(params[:q])
+    @pagy, @contacts = pagy(@q.result(distinct: true))
+
   end
+end
 
   # GET /contacts/1 or /contacts/1.json
   def show
@@ -35,8 +48,8 @@ def create
 
   respond_to do |format|
     if @contact.save
-      format.html { redirect_to contact_url(@contact), notice: "Contact was successfully created." }
-      format.json { render :show, status: :created, location: @contact }
+      format.html { redirect_to contacts_url, notice: "Contact was successfully created." }
+      format.json { render :index, status: :created, location: @contact }
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -48,10 +61,10 @@ end
     respond_to do |format|
       if @contact.update(contact_params)
         format.html do
-          redirect_to contact_url(@contact),
+          redirect_to contacts_url,
                       notice: "Contact was successfully updated."
         end
-        format.json { render :show, status: :ok, location: @contact }
+        format.json { render :index, status: :ok, location: @contact }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json do
@@ -77,7 +90,7 @@ end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_contact
-    @contact = Contact.find(params[:id])
+    @contact = current_user.contacts.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

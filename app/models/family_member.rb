@@ -1,4 +1,5 @@
 class FamilyMember < ApplicationRecord
+  has_one_attached :image
   belongs_to :user
   validates :first_name, presence: true, format: { with: /\A[\p{L}\-' ]+\z/ }
   validates :relationship, presence: true

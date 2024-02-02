@@ -1,10 +1,11 @@
-<h1>Editing family member</h1>
+<center>
+<h1>Edit family member</h1>
 
 <%= render "form", family_member: @family_member %>
 
 <br>
 
-<div>
-  <%= link_to "Show this family member", @family_member %> |
-  <%= link_to "Back to family members", family_members_path %>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+  <%= link_to "To Family members", family_members_path, class: "btn btn-primary" %>
 </div>
+</center>
