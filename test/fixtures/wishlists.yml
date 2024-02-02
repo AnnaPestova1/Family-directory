@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  quantity: 1
+  link: MyString
+  purchased: false
+  family_member: one
+
+two:
+  description: MyText
+  quantity: 1
+  link: MyString
+  purchased: false
+  family_member: two

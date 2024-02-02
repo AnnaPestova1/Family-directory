@@ -1,0 +1,42 @@
+<%= form_with(model: wishlist, remote: true) do |form| %>
+  <% if wishlist.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h2>
+
+      <ul>
+        <% wishlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :link, style: "display: block" %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div>
+    <%= form.label :purchased, style: "display: block" %>
+    <%= form.check_box :purchased %>
+  </div>
+
+  <div>
+    <%= form.label :family_member_id, style: "display: block" %>
+    <%= form.text_field :family_member_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
