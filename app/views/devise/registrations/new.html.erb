@@ -1,42 +1,46 @@
-<center>
+<div class="d-flex justify-content-center flex-column align-items-center">
   <h2>Sign up</h2>
-  <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="container text-center">
+    <div class="row text-center justify-content-center  ">
+      <div  class="card col col-xs-12 col-md-8 p-3">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
 
-      <div class="field">
-        <%= f.label :first_name, style: "display: block; font-weight: bold" %><br />
-        <%= f.text_field :first_name, autofocus: true, style: "width: 90%" %>
-      </div>
+          <div class="field">
+            <%= f.label :first_name, style: "display: block; font-weight: bold" %><br />
+            <%= f.text_field :first_name, autofocus: true, style: "width: 90%" %>
+          </div>
 
-      <div class="field">
-        <%= f.label :last_name, style: "display: block; font-weight: bold" %><br />
-        <%= f.text_field :last_name, autofocus: true, style: "width: 90%" %>
-      </div>
+          <div class="field">
+            <%= f.label :last_name, style: "display: block; font-weight: bold" %><br />
+            <%= f.text_field :last_name, autofocus: true, style: "width: 90%" %>
+          </div>
 
-      <div class="field">
-        <%= f.label :email, style: "display: block; font-weight: bold" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 90%" %>
-      </div>
+          <div class="field">
+            <%= f.label :email, style: "display: block; font-weight: bold" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 90%" %>
+          </div>
 
-      <div class="field">
-        <%= f.label :password, style: "display: block; font-weight: bold"  %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", style: "width: 90%" %>
-      </div>
+          <div class="field">
+            <%= f.label :password, style: "display: block; font-weight: bold"  %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", style: "width: 90%" %>
+          </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation, style: "display: block; font-weight: bold"  %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 90%" %>
-      </div>
+          <div class="field">
+            <%= f.label :password_confirmation, style: "display: block; font-weight: bold"  %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 90%" %>
+          </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up", class: "btn btn-primary mt-3" %>
-      </div>
-    <% end %>
-      </div>
-  <%= render "devise/shared/links" %>
-</center>
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-primary mt-3", style: "width: 90%" %>
+          </div>
+        <% end %>
+          </div>
+      <%= render "devise/shared/links" %>
+  </div>
+ </div>
+</div>
