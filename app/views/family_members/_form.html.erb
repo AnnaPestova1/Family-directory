@@ -12,7 +12,7 @@
 <div class="card p-3 gap-1 ">
   <div>
     <%= form.label :first_name, style: "display: block; font-weight: bold" %>
-    <%= form.text_field :first_name, style: "width: 90%" %>
+    <%= form.text_field :first_name, required: true, style: "width: 90%" %>
   </div>
 
   <div>
@@ -27,7 +27,7 @@
   <% unless @family_member.relationship == "Account Owner" || @family_member.relationship == "Family" %>
     <div>
       <%= form.label :relationship, style: "display: block; font-weight: bold" %>
-      <%= form.text_field :relationship, style: "width: 90%"  %>
+      <%= form.text_field :relationship, required: true, style: "width: 90%"  %>
     </div>
   <%end%>
   

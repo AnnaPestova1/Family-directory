@@ -9,13 +9,13 @@ def index
     @family_member = FamilyMember.find(params[:family_member_id])
     @q = @family_member.contacts.includes(:family_members).ransack(params[:q])
     @pagy, @contacts = pagy(@q.result(distinct: true))
+    set_show_family_contacts_button
   else
     @q = current_user.contacts.includes(:family_members)
                                     .select(:id, :name, :phone, :email, :description, :category)
                                     .distinct
                                     .ransack(params[:q])
     @pagy, @contacts = pagy(@q.result(distinct: true))
-
   end
 end
 
@@ -97,4 +97,24 @@ end
  def contact_params
   params.require(:contact).permit(:name, :phone, :email, :description, :category, family_member_ids: [])
 end
+def set_show_family_contacts_button
+  family_member_with_family_relation = current_user.family_members.find_by(relationship: 'Family')
+
+  if family_member_with_family_relation && family_member_with_family_relation.contacts.exists?
+    @show_family_contacts_button = true
+    @family_member_id_with_family_relation = family_member_with_family_relation.id
+  else
+    @show_family_contacts_button = false
+  end
+end
+# def set_show_family_contacts_button
+#   family_member_with_family_relation = current_user.family_members.find_by(relationship: 'Family')
+
+#   if family_member_with_family_relation && family_member_with_family_relation.contacts.exists?
+#     @show_family_contacts_button = true
+#     @family_member_id_with_family_relation = family_member_with_family_relation.id
+#   else
+#     @show_family_contacts_button = false
+#   end
+# end
 end

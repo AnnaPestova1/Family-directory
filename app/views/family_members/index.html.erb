@@ -5,11 +5,11 @@
         <% unless @family_members.size == 2 and family_member.relationship == "Family" %>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
               <div class="card mb-5" style="min-height: 400px;">
-                <div style="min-height: 300px; max-width: 100%;">
+                <div style="min-height: 300px; max-width: 100%;" class="d-flex ">
                   <% if family_member.image.attached? %> 
-                    <%= image_tag(family_member.image,  alt: "userpic", style:"width:100%", class: "card-img-top" ).html_safe %> 
+                    <%= image_tag(family_member.image,  alt: "userpic", style:"object-fit: cover", class: "card-img-top" ).html_safe %> 
                   <% else %>
-                    <%= image_tag("/default.jpg", alt: "userpic", style:"width:100%", class: "card-img-top" ).html_safe %> 
+                    <%= image_tag("/default.jpg", alt: "userpic", style:"object-fit: cover", class: "card-img-top" ).html_safe %> 
                   <% end %>
                 </div>
                   <div class="card-body">

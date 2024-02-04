@@ -1,10 +1,11 @@
 <div class="d-flex justify-content-center">
-  <div class="flex-grow-1">
+  <div class="d-flex flex-grow-1 gap-1">
     <%= search_form_for @q do |f| %>
       <% f.label :description_or_link_cont %>
       <%= f.search_field :description_or_link_cont %>
-      <%= f.submit %>
+          <%= f.submit class: "btn btn-outline-secondary  btn-sm"%>
     <% end %>
+     <%= link_to "Reset", wishlists_path(q: nil), class: "btn btn-outline-secondary  btn-sm", style: "height: fit-content" %>
   </div>
   <%= link_to "", new_wishlist_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %>   
 </div>

@@ -27,7 +27,7 @@
     </div>
 
     <div>
-      <%= form.label :description, style: "display: block", style: "display: block; font-weight: bold" %>
+      <%= form.label :description, style: "display: block; font-weight: bold" %>
       <%= form.text_area :description, style: "width: 90%" %>
     </div>
 
@@ -35,11 +35,17 @@
       <%= form.label :category,style: "display: block; font-weight: bold" %>
       <%= form.text_field :category, required: true, style: "width: 90%" %>
     </div>
-
-    <div>
-      <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
-      <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
-    </div>
+    <% unless current_user.family_members.size == 2 %>
+      <div>
+        <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
+        <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+      </div>
+    <% else %>
+      <div>
+        <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
+        <%= form.collection_select(:family_member_ids, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+      </div>
+    <%end%>
     <div>
       <%= form.submit class: "btn btn-primary" %>
     </div>
