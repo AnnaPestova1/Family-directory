@@ -24,7 +24,9 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end ">
           <% current_user.family_members.each do |family_member| %>
+           <% unless current_user.family_members.size == 2 and family_member.relationship == "Family" %>
             <li><%= link_to "#{family_member.first_name}'s wishlist",  family_member_wishlists_path(family_member), class: "dropdown-item" %></li>
+           <% end %> 
           <% end %>
           <li><hr class="dropdown-divider"></li>
           <%= link_to "Full wishlist", wishlists_path, class: "dropdown-item"  %>
@@ -36,7 +38,9 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <% current_user.family_members.each do |family_member| %>
-              <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "dropdown-item" %></li>
+              <% unless current_user.family_members.size == 2 and family_member.relationship == "Family" %>
+                <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "dropdown-item" %></li>
+              <% end %>
             <% end %>
             <li><hr class="dropdown-divider"></li>
               <%= link_to "contacts", contacts_path, class: "dropdown-item"  %>

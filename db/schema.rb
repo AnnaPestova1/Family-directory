@@ -11,6 +11,30 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_01_13_165430) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
+  enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
+  enable_extension "plpgsql"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,8 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_165430) do
   end
 
   create_table "contacts_family_members", id: false, force: :cascade do |t|
-    t.integer "family_member_id", null: false
-    t.integer "contact_id", null: false
+    t.bigint "family_member_id", null: false
+    t.bigint "contact_id", null: false
     t.index ["contact_id", "family_member_id"], name: "idx_on_contact_id_family_member_id_e11ac54080"
     t.index ["family_member_id", "contact_id"], name: "idx_on_family_member_id_contact_id_7d3e22f1c7"
   end
@@ -59,7 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_165430) do
   create_table "family_members", force: :cascade do |t|
     t.string "first_name"
     t.string "relationship"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_family_members_on_user_id"
@@ -84,7 +108,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_165430) do
     t.integer "quantity", default: 1
     t.string "link"
     t.boolean "purchased", default: false
-    t.integer "family_member_id", null: false
+    t.bigint "family_member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["family_member_id"], name: "index_wishlists_on_family_member_id"
