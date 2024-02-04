@@ -13,12 +13,12 @@
   <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
     <div>
       <%= form.label :name, style: "display: block; font-weight: bold" %>
-      <%= form.text_field :name, style: "width: 90%" %>
+      <%= form.text_field :name, required: true, style: "width: 90%" %>
     </div>
 
     <div>
       <%= form.label :phone,  style: "display: block; font-weight: bold" %>
-      <%= form.text_field :phone, style: "width: 90%" %>
+      <%= form.text_field :phone, required: true, style: "width: 90%" %>
     </div>
 
     <div>
@@ -33,7 +33,7 @@
 
     <div>
       <%= form.label :category,style: "display: block; font-weight: bold" %>
-      <%= form.text_field :category, style: "width: 90%" %>
+      <%= form.text_field :category, required: true, style: "width: 90%" %>
     </div>
 
     <div>
