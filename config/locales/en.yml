@@ -35,3 +35,9 @@ en:
     submit:
       create: "Create"
       update: "Update"
+
+en: 
+  helpers:
+      label:
+        family_member:
+          image: Change image
