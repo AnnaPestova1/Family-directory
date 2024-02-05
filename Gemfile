@@ -95,3 +95,5 @@ gem "strong_password", "~> 0.0.10"
 gem "ransack", "~> 4.1"
 
 gem "pagy", "~> 6.4"
+
+gem "aws-sdk-s3", require: false

@@ -7,9 +7,13 @@
               <div class="card mb-5" style="min-height: 400px;">
                 <div style="min-height: 300px; max-width: 100%;" class="d-flex ">
                   <% if family_member.image.attached? %> 
-                    <%= image_tag(family_member.image,  alt: "userpic", style:"object-fit: cover", class: "card-img-top" ).html_safe %> 
+                    <%=  image_tag(family_member.image,  alt: "userpic", style: "object-fit: cover", class: "card-img-top" ).html_safe %> 
                   <% else %>
-                    <%= image_tag("/default.jpg", alt: "userpic", style:"object-fit: cover", class: "card-img-top" ).html_safe %> 
+                   <% if family_member.relationship == "Family"%> 
+                      <%= image_tag("/photoFamily.jpeg", alt: "userpic", style: "object-fit: cover", class: "card-img-top").html_safe %> 
+                    <% else %>
+                      <%= image_tag("/default.jpg", alt: "userpic", style: "object-fit: cover", class: "card-img-top").html_safe %> 
+                    <% end %>  
                   <% end %>
                 </div>
                   <div class="card-body">

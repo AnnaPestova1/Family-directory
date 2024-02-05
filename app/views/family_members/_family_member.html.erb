@@ -1,4 +1,4 @@
-<div class="card p-3 gap-2 justify-content-center " id="<%= dom_id family_member %>">
+<div class="card p-3 gap-2 justify-content-center pb-5 " id="<%= dom_id family_member %>">
   <% if family_member.image.attached? %>
     <p style="width: 100%; height: auto;">
     <%= image_tag(family_member.image, style:"width:100%", class:"card-img-top").html_safe %>

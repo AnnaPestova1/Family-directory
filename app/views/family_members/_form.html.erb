@@ -9,7 +9,7 @@
       </ul>
     </div>
   <% end %>
-<div class="card p-3 gap-1 ">
+<div class="card p-3 gap-1 pb-5">
   <div>
     <%= form.label :first_name, style: "display: block; font-weight: bold" %>
     <%= form.text_field :first_name, required: true, style: "width: 90%" %>
@@ -19,7 +19,11 @@
        <% if family_member.image.attached? %> 
           <%= image_tag(family_member.image,  alt: "userpic", style:"width:25%" ).html_safe %> 
         <% else %>
-          <%= image_tag("/default.jpg", alt: "userpic", style:"width:25%").html_safe %> 
+          <% if family_member.relationship == "Family"%> 
+            <%= image_tag("/photoFamily.jpeg", alt: "userpic", style:"width:25%").html_safe %> 
+          <% else %>
+            <%= image_tag("/default.jpg", alt: "userpic", style:"width:25%").html_safe %> 
+          <% end %>  
       <% end %>
     <%= form.label :image, style: "display: block; font-weight: bold" %>
     <%= form.file_field :image, style: "width: 90%"  %>
