@@ -69,10 +69,10 @@
   </table>
 </div>
 <% if @contacts.empty? %>
-<div class="d-flex flex-column justify-content-center align-items-center gap-2 p-5 ">
-<h6>This contact list is empty</h6>
-<%= link_to "Add first contact", new_contact_path, class: "btn btn-primary" %>   
-</div>
+  <div class="d-flex flex-column justify-content-center align-items-center gap-2 p-5 ">
+    <h6>This contact list is empty</h6>
+    <%= link_to "Add first contact", new_contact_path, class: "btn btn-primary" %>   
+  </div>
 <% end %>
 <% unless @family_member&.relationship == 'Family' %>
   <% if @show_family_contacts_button %>
@@ -84,8 +84,7 @@
 <% end %>
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </ul>
 </nav>
 
