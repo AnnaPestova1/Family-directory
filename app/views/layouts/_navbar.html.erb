@@ -1,0 +1,64 @@
+<div class="container">
+  <%= link_to root_path do %>
+    <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 250px", class: "navbar-brand" ).html_safe %>
+  <% end %>
+   
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse w-250" id="navbarSupportedContent">
+    <ul class="navbar-nav d-flex justify-content-end w-100">  
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown-center">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Wishlists
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end ">
+          <% current_user.family_members.each do |family_member| %>
+            <li><%= link_to "#{family_member.first_name}'s wishlist",  family_member_wishlists_path(family_member), class: "dropdown-item" %></li>
+          <% end %>
+          <li><hr class="dropdown-divider"></li>
+          <%= link_to "Full wishlist", wishlists_path, class: "dropdown-item"  %>
+        </ul>
+        </li>
+        <li class="nav-item dropdown-center">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Contacts
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <% current_user.family_members.each do |family_member| %>
+              <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "dropdown-item" %></li>
+            <% end %>
+            <li><hr class="dropdown-divider"></li>
+              <%= link_to "contacts", contacts_path, class: "dropdown-item"  %>
+          </ul>
+        </li>
+        <li class="nav-item dropdown-center">
+          <a class="nav-link dropdown-toggle bi bi-person-circle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item"  %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: " navbar-link btn w-150"  %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "navbar-link btn w-150"  %>
+        </li> 
+      <% end%>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+
+
+<%= render @contact %>
+
+<div>
+  <%= link_to "Edit this contact", edit_contact_path(@contact), class: "btn btn-primary mt-3" %> |
+  <%= link_to "Back to contacts", contacts_path, class: "btn btn-primary mt-3" %>
+
+  <%= button_to "Destroy this contact", @contact, method: :delete, class: "btn btn-primary mt-3" %>
+</div>

@@ -1,0 +1,11 @@
+<center>
+  <h1>Add a contact</h1>
+
+  <%= render "form", contact: @contact %>
+
+  <br>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <%= link_to "To contacts", contacts_path, class: "btn btn-primary" %>
+  </div>
+</center>

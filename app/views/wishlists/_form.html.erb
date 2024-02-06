@@ -1,0 +1,44 @@
+<%= form_with(model: wishlist, remote: true) do |form| %>
+  <% if wishlist.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h2>
+
+      <ul>
+        <% wishlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
+    <div class="form-group">
+      <%= form.label :description, style: "display: block; font-weight: bold"  %>
+      <%= form.text_area :description, style: "width: 90%" %>
+    </div>
+
+    <div>
+      <%= form.label :quantity, style: "display: block; font-weight: bold"  %>
+      <%= form.number_field :quantity, style: "width: 90%" %>
+    </div>
+
+    <div>
+      <%= form.label :link, style: "display: block; font-weight: bold"  %>
+      <%= form.text_field :link, style: "width: 90%" %>
+    </div>
+
+    <div>
+      <%= form.label :purchased, style: "display: block; font-weight: bold" %>
+      <%= form.check_box :purchased, style: "width: 90%" %>
+    </div>
+
+    <div>
+      <%= form.label :family_member_id, style: "display: block; font-weight: bold" %>
+      <%= form.collection_select(:family_member_id, current_user.family_members, :id, :first_name, { prompt: "Select Family Member" }, { style: "width: 90%" }) %>
+
+    </div>
+    <br/> 
+    <div>
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+</div>
+<% end %>

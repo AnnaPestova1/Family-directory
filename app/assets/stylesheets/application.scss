@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap");
+
+body {
+  font-family: "Montserrat", "Helvetica", sans-serif;
+  font-weight: bold;
+  font-weight: normal;
+  background-image: url("pexels-pixabay-315791.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  background: linear-gradient(
+    to right,
+    rgba(239, 238, 238, 0.85),
+    rgba(255, 255, 255, 0.85)
+  );
+  // min-height: calc(100vh - 135px);
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.navbar-nav .nav-item {
+  min-width: fit-content;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+a {
+  color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.pagy-nav.pagination {
+  & .prev,
+  & .next {
+    a,
+    &.disabled {
+      @extend .btn;
+    }
+  }
+  & .page {
+    &.active {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+    a {
+      @extend .btn;
+    }
+  }
+  @extend .d-flex;
+  @extend .gap-2;
+}

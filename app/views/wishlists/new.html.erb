@@ -1,0 +1,11 @@
+<center>
+  <h1>Add a wish</h1>
+
+  <%= render "form", wishlist: @wishlist %>
+
+  <br>
+  
+  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <%= link_to "Back to wishlist", wishlists_path, class: "btn btn-primary" %>
+  </div>
+</center>
