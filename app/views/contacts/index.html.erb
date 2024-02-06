@@ -74,7 +74,9 @@
     <%= link_to "Add first contact", new_contact_path, class: "btn btn-primary" %>   
   </div>
 <% end %>
+<!-- show button on page with contacts those .relationship not a "Family" -->
 <% unless @family_member&.relationship == 'Family' %>
+<!-- show button if family member with relationship "family" has contacts (this logic comes from controllers) -->
   <% if @show_family_contacts_button %>
     <div class="d-flex flex-column justify-content-center align-items-center gap-2 p-5">
       <h6>Family contact list has <%= FamilyMember.find(@family_member_id_with_family_relation).contacts.size %> contacts</h6>
@@ -84,6 +86,7 @@
 <% end %>
 <nav aria-label="Page navigation example">
   <ul class="pagination">
+    <!-- pagination button shows if more than 1 page -->
     <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </ul>
 </nav>

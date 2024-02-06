@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", :as => :rails_health_check
-
+  # logic when rendering 404 error
    match "*unmatched", to: "application#not_found_method", via: :all, constraints: lambda { |req| req.path.exclude?('/rails/active_storage/') }
 
   # Defines the root path route ("/")
