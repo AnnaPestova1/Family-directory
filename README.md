@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the final project for the Code The Dream Ruby on Rails class.
 
-Things you may want to cover:
+The Family Directory app allows users to organize their contacts and wishlists and also add them for the user's family members.
 
-* Ruby version
+This is a Ruby on Rails app with ElephantSQL databases. The images are stored on Amazon S3.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project deployed here: https://annapestova-familydirectory.onrender.com/
