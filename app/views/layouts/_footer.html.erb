@@ -1,11 +1,22 @@
-<div class="d-flex align-items-center ", style="height: 100%; width: 95%">
+<div class="d-flex align-items-center pt-2 pb-2 gap-1", style="height: 100%; width: 95%">
   <div class="flex-grow-1" >
     <i class="bi bi-c-circle"></i>
     <%=  Time.now.year%>  Anna Pestova
   </div>
+  <div class="d-sm-flex">
+    <div>
+      <%= image_tag("/ruby-on-rails.svg", alt: "RubyonRails", style: "height: 30px", class: "navbar-brand" ).html_safe %>
+    </div>
+    <div>
+      <%= image_tag("/elephant-sql.svg", alt: "ElephantSQL", style: "height: 30px", class: "navbar-brand" ).html_safe %>
+    </div>
+    <div>
+      <%= image_tag("/amazon-s3.svg", alt: "AmazonS3", style: "height: 30px", class: "navbar-brand" ).html_safe %>
+    </div>
+  </div>
   <div>
     <a href="https://github.com/AnnaPestova1">
-      <i class="bi bi-github"></i>
+      <i class="bi bi-github ps-1 ", style="font-size: 25px;"></i>
     </a>
   </div>
 </div>
