@@ -39,7 +39,7 @@
     <% else %>
       <div>
         <%= form.label :family_member_id, style: "display: block; font-weight: bold" %>
-      <%= form.collection_select(:family_member_id, current_user.family_members.family_members.where.not(relationship: "Family"), :id, :first_name, { prompt: "Select Family Member" }, { style: "width: 90%" }) %>
+      <%= form.collection_select(:family_member_id, current_user.family_members.where.not(relationship: "Family"), :id, :first_name, { prompt: "Select Family Member" }, { style: "width: 90%" }) %>
       </div>
     <%end%>
  
