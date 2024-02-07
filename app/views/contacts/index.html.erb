@@ -1,10 +1,11 @@
 <div class="d-flex justify-content-center">
-  <div class="flex-grow-1">
+  <div class="d-flex flex-grow-1 gap-1">
     <%= search_form_for @q do |f| %>
       <% f.label :name_or_phone_or_email_or_category_cont %>
       <%= f.search_field :name_or_phone_or_email_or_category_cont %>
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-outline-secondary  btn-sm"%>
     <% end %>
+     <%= link_to "Reset", contacts_path(q: nil), class: "btn btn-outline-secondary  btn-sm", style: "height: fit-content" %>
   </div>
   <%= link_to "", new_contact_path, class: "bi bi-plus-square-dotted fs-1 link-secondary" %> 
 </div>
@@ -67,10 +68,26 @@
     <% end %>
   </table>
 </div>
+<% if @contacts.empty? %>
+  <div class="d-flex flex-column justify-content-center align-items-center gap-2 p-5 ">
+    <h6>This contact list is empty</h6>
+    <%= link_to "Add first contact", new_contact_path, class: "btn btn-primary" %>   
+  </div>
+<% end %>
+<!-- show button on page with contacts those .relationship not a "Family" -->
+<% unless @family_member&.relationship == 'Family' %>
+<!-- show button if family member with relationship "family" has contacts (this logic comes from controllers) -->
+  <% if @show_family_contacts_button %>
+    <div class="d-flex flex-column justify-content-center align-items-center gap-2 p-5">
+      <h6>Family contact list has <%= FamilyMember.find(@family_member_id_with_family_relation).contacts.size %> contacts</h6>
+      <%= link_to "Show Family Contacts", family_member_contacts_path(family_member_id: @family_member_id_with_family_relation), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-
+    <!-- pagination button shows if more than 1 page -->
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </ul>
 </nav>
 

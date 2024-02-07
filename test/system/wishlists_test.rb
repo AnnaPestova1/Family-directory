@@ -27,14 +27,14 @@ class WishlistsTest < ApplicationSystemTestCase
 
   test "should update Wishlist" do
     visit wishlist_url(@wishlist)
-    click_on "Edit this wishlist", match: :first
+    click_on "Edit this wish", match: :first
 
     fill_in "Description", with: @wishlist.description
     fill_in "Family member", with: @wishlist.family_member_id
     fill_in "Link", with: @wishlist.link
     check "Purchased" if @wishlist.purchased
     fill_in "Quantity", with: @wishlist.quantity
-    click_on "Update Wishlist"
+    click_on "Update Wish"
 
     assert_text "Wishlist was successfully updated"
     click_on "Back"
@@ -42,7 +42,7 @@ class WishlistsTest < ApplicationSystemTestCase
 
   test "should destroy Wishlist" do
     visit wishlist_url(@wishlist)
-    click_on "Destroy this wishlist", match: :first
+    click_on "Destroy this wish", match: :first
 
     assert_text "Wishlist was successfully destroyed"
   end

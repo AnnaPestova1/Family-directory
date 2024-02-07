@@ -5,7 +5,6 @@ class FamilyMembersController < ApplicationController
   # GET /family_members or /family_members.json
   def index
     @family_members = current_user.family_members
-    # @family_members = FamilyMember.all
   end
 
   # GET /family_members/1 or /family_members/1.json
@@ -23,9 +22,7 @@ class FamilyMembersController < ApplicationController
 
   # POST /family_members or /family_members.json
   def create
-    # @family_member = FamilyMember.new(family_member_params)
     @family_member = current_user.family_members.build(family_member_params)
-
     respond_to do |format|
       if @family_member.save
         format.html { redirect_to family_members_url, notice: "Family member was successfully created." }
@@ -53,7 +50,6 @@ class FamilyMembersController < ApplicationController
   # DELETE /family_members/1 or /family_members/1.json
   def destroy
     @family_member.destroy!
-
     respond_to do |format|
       format.html { redirect_to family_members_url, notice: "Family member was successfully destroyed." }
       format.json { head :no_content }

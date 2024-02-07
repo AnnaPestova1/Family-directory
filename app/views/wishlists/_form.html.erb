@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
+  <div  class="card p-3 gap-1 pb-5">
     <div class="form-group">
       <%= form.label :description, style: "display: block; font-weight: bold"  %>
-      <%= form.text_area :description, style: "width: 90%" %>
+      <%= form.text_area :description, required: true, style: "width: 90%" %>
     </div>
 
     <div>
@@ -31,14 +31,21 @@
       <%= form.check_box :purchased, style: "width: 90%" %>
     </div>
 
-    <div>
-      <%= form.label :family_member_id, style: "display: block; font-weight: bold" %>
+     <% unless current_user.family_members.size == 2 %>
+      <div>
+       <%= form.label :family_member_id, style: "display: block; font-weight: bold" %>
       <%= form.collection_select(:family_member_id, current_user.family_members, :id, :first_name, { prompt: "Select Family Member" }, { style: "width: 90%" }) %>
-
-    </div>
+      </div>
+    <% else %>
+      <div>
+        <%= form.label :family_member_id, style: "display: block; font-weight: bold" %>
+      <%= form.collection_select(:family_member_id, current_user.family_members.family_members.where.not(relationship: "Family"), :id, :first_name, { prompt: "Select Family Member" }, { style: "width: 90%" }) %>
+      </div>
+    <%end%>
+ 
     <br/> 
     <div>
-      <%= form.submit class: "btn btn-primary" %>
+      <%= form.submit class: "btn btn-primary", style: "width: 95%" %>
     </div>
 </div>
 <% end %>

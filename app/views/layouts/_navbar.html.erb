@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid ">
   <%= link_to root_path do %>
-    <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 250px", class: "navbar-brand" ).html_safe %>
+    <%= image_tag("/logo_family_directory.png", alt: "logo", style: "width: 200px", class: "navbar-brand" ).html_safe %>
   <% end %>
    
   <button
@@ -17,14 +17,17 @@
 
   <div class="collapse navbar-collapse w-250" id="navbarSupportedContent">
     <ul class="navbar-nav d-flex justify-content-end w-100">  
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.family_members.any?%>
         <li class="nav-item dropdown-center">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Wishlists
         </a>
         <ul class="dropdown-menu dropdown-menu-end ">
           <% current_user.family_members.each do |family_member| %>
+            <!-- logic for rendering wishlists dropdown -->
+            <% if family_member.id.present? && !(current_user.family_members.size == 2 && family_member.relationship == "Family") %>
             <li><%= link_to "#{family_member.first_name}'s wishlist",  family_member_wishlists_path(family_member), class: "dropdown-item" %></li>
+           <% end %> 
           <% end %>
           <li><hr class="dropdown-divider"></li>
           <%= link_to "Full wishlist", wishlists_path, class: "dropdown-item"  %>
@@ -36,10 +39,13 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <% current_user.family_members.each do |family_member| %>
-              <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "dropdown-item" %></li>
+            <!-- logic for rendering contacts dropdown -->
+             <% if family_member.id.present? && !(current_user.family_members.size == 2 && family_member.relationship == "Family") %>
+                <li><%= link_to "#{family_member.first_name}'s contacts", family_member_contacts_path(family_member), class: "dropdown-item" %></li>
+              <% end %>
             <% end %>
             <li><hr class="dropdown-divider"></li>
-              <%= link_to "contacts", contacts_path, class: "dropdown-item"  %>
+              <%= link_to "All contacts", contacts_path, class: "dropdown-item"  %>
           </ul>
         </li>
         <li class="nav-item dropdown-center">

@@ -6,7 +6,7 @@ one:
   email: MyString
   description: MyText
   category: MyString
-  family_member: one
+  # family_member: one
 
 two:
   name: MyString
@@ -14,4 +14,4 @@ two:
   email: MyString
   description: MyText
   category: MyString
-  family_member: two
+  # family_member: two

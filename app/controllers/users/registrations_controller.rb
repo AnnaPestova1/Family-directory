@@ -62,10 +62,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   
-  
+  #during creating user account, create default family members: account owner and family
     def create_family_members
     return unless resource.persisted?
-
     family_member = resource.family_members.create(first_name: resource.first_name, relationship: 'Account Owner')
     family_member = resource.family_members.create(first_name: resource.last_name, relationship: 'Family')
   end

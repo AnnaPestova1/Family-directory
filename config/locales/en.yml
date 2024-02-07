@@ -29,3 +29,29 @@
 
 en:
   hello: "Hello world"
+
+en:
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
+
+en: 
+  helpers:
+      label:
+        family_member:
+          image: Change image
+
+en:
+  helpers:
+    submit:
+      wishlist: 
+        create: "Create"
+        update: "Update"
+
+en:
+  helpers:
+    submit:
+      contact: 
+        create: "Create"
+        update: "Update"

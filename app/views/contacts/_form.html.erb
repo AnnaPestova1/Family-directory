@@ -10,15 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <div  class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
+  <div  class="card p-3 gap-1 pb-5">
     <div>
       <%= form.label :name, style: "display: block; font-weight: bold" %>
-      <%= form.text_field :name, style: "width: 90%" %>
+      <%= form.text_field :name, required: true, style: "width: 90%" %>
     </div>
 
     <div>
       <%= form.label :phone,  style: "display: block; font-weight: bold" %>
-      <%= form.text_field :phone, style: "width: 90%" %>
+      <%= form.text_field :phone, required: true, style: "width: 90%" %>
     </div>
 
     <div>
@@ -27,21 +27,27 @@
     </div>
 
     <div>
-      <%= form.label :description, style: "display: block", style: "display: block; font-weight: bold" %>
+      <%= form.label :description, style: "display: block; font-weight: bold" %>
       <%= form.text_area :description, style: "width: 90%" %>
     </div>
 
     <div>
       <%= form.label :category,style: "display: block; font-weight: bold" %>
-      <%= form.text_field :category, style: "width: 90%" %>
+      <%= form.text_field :category, required: true, style: "width: 90%" %>
     </div>
-
+    <% unless current_user.family_members.size == 2 %>
+      <div>
+        <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
+        <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+      </div>
+    <% else %>
+      <div>
+        <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
+        <%= form.collection_select(:family_member_ids, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+      </div>
+    <%end%>
     <div>
-      <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
-      <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
-    </div>
-    <div>
-      <%= form.submit class: "btn btn-primary" %>
+      <%= form.submit class: "btn btn-primary", style: "width: 95%" %>
     </div>
   </div>
 <% end %>

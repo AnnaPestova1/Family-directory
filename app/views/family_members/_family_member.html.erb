@@ -1,4 +1,4 @@
-<div class="card p-5 m-5 d-flex flex-column gap-2" style="width: 30%;" id="<%= dom_id family_member %>">
+<div class="card p-3 gap-2 justify-content-center pb-5 " id="<%= dom_id family_member %>">
   <% if family_member.image.attached? %>
     <p style="width: 100%; height: auto;">
     <%= image_tag(family_member.image, style:"width:100%", class:"card-img-top").html_safe %>
@@ -12,9 +12,9 @@
     <p class="card-text">
       <%= family_member.relationship %>
    </p>
-   <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-    <%= link_to "Contacts", family_member_contacts_path(family_member), class: "btn btn-secondary me-md-2" %>
-    <%= link_to "Wishlist", family_member_wishlists_path(family_member), class: "btn btn-secondary" %>
-   </div>
+   <!-- <div class="d-grid gap-2 d-md-flex justify-content-center"> -->
+    <%= link_to "Contacts", family_member_contacts_path(family_member), class: "btn btn-secondary", style: "width: 100%" %>
+    <%= link_to "Wishlist", family_member_wishlists_path(family_member), class: "btn btn-secondary", style: "width: 100%" %>
+   <!-- </div> -->
 </div>
 

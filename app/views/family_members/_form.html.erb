@@ -2,7 +2,6 @@
   <% if family_member.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(family_member.errors.count, "error") %> prohibited this family_member from being saved:</h2>
-
       <ul>
         <% family_member.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,26 +9,36 @@
       </ul>
     </div>
   <% end %>
-<div class="card p-5 d-flex flex-column gap-2" style="width: 45%;">
+<div class="card p-3 gap-1 pb-5">
   <div>
     <%= form.label :first_name, style: "display: block; font-weight: bold" %>
-    <%= form.text_field :first_name, style: "width: 90%" %>
+    <%= form.text_field :first_name, required: true, style: "width: 90%" %>
   </div>
 
   <div>
+       <% if family_member.image.attached? %> 
+          <%= image_tag(family_member.image,  alt: "userpic", style:"width:25%" ).html_safe %> 
+        <% else %>
+          <% if family_member.relationship == "Family"%> 
+            <%= image_tag("/photoFamily.jpeg", alt: "userpic", style:"width:25%").html_safe %> 
+          <% else %>
+            <%= image_tag("/default.jpg", alt: "userpic", style:"width:25%").html_safe %> 
+          <% end %>  
+      <% end %>
     <%= form.label :image, style: "display: block; font-weight: bold" %>
     <%= form.file_field :image, style: "width: 90%"  %>
   </div>
   <% unless @family_member.relationship == "Account Owner" || @family_member.relationship == "Family" %>
     <div>
       <%= form.label :relationship, style: "display: block; font-weight: bold" %>
-      <%= form.text_field :relationship, style: "width: 90%"  %>
+      <%= form.text_field :relationship, required: true, style: "width: 90%"  %>
     </div>
   <%end%>
   
   <br/>
   <div>
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit class: "btn btn-primary", style: "width: 95%" %>
   </div>
 </div>
 <% end %>
+

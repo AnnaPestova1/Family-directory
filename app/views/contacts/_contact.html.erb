@@ -1,32 +1,32 @@
-<div id="<%= dom_id contact %>">
-  <p>
-    <strong>Name:</strong>
-    <%= contact.name %>
-  </p>
+<div class="card p-3 gap-2 justify-content-center pb-5 " id="<%= dom_id contact %>">
+  <div class="card-body">
+    <p>
+      <strong>Name:</strong>
+      <%= contact.name %>
+    </p>
+    <p>
+      <strong>Phone:</strong>
+      <%= contact.phone %>
+    </p>
 
-  <p>
-    <strong>Phone:</strong>
-    <%= contact.phone %>
-  </p>
+    <p>
+      <strong>Email:</strong>
+      <%= contact.email %>
+    </p>
 
-  <p>
-    <strong>Email:</strong>
-    <%= contact.email %>
-  </p>
+    <p>
+      <strong>Description:</strong>
+      <%= contact.description %>
+    </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= contact.description %>
-  </p>
+    <p>
+      <strong>Category:</strong>
+      <%= contact.category %>
+    </p>
 
-  <p>
-    <strong>Category:</strong>
-    <%= contact.category %>
-  </p>
-
-  <p>
-    <strong>Family member:</strong>
-    <%= contact.family_members.pluck(:relationship).join(', ') %>
-  </p>
-
+    <p>
+      <strong>Family member:</strong>
+      <%= contact.family_members.pluck(:relationship).join(', ') %>
+    </p>
+ </div>
 </div>
