@@ -43,7 +43,7 @@
     <% else %>
       <div>
         <%= form.label :family_member_ids, "Contact for", style: "display: block; font-weight: bold" %>
-        <%= form.collection_select(:family_member_ids, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
+        <%= form.collection_select(:family_member_ids, current_user.family_members, :id, :first_name, { multiple: true, include_blank: true }, { style: "width: 90%" }) %>
       </div>
     <%end%>
     <div>
