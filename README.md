@@ -6,9 +6,9 @@ The Family Directory app allows users to organize their contacts and wishlists a
 
 ## Technologies
 
-`Ruby on Rails` app
-`ElephantSQL`
-`Amazon S3` for images
+- `Ruby on Rails` app
+- `ElephantSQL`
+- `Amazon S3` for images
 
 ## Links
 
