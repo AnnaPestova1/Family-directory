@@ -72,8 +72,8 @@
 <%= link_to "Add first wish", new_wishlist_path, class: "btn btn-primary" %>   
 </div>
 <% end %>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
+<nav aria-label="Page navigation">
+  <ul class="pagination d-flex justify-content-center">
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 
   </ul>
