@@ -1,7 +1,5 @@
 # README
 
-This is the final project for the Code The Dream `Ruby on Rails` class.
-
 The Family Directory app allows users to organize their contacts and wishlists and also add them for the user's family members.
 
 ## Technologies
